@@ -1,0 +1,9 @@
+1- setup project
+2- setup mongodb
+3- setup tailwind css
+4- create  header and footer
+5- create register api
+7- create login api
+8- create registration form 
+9-calling api for register
+10-creating context and Toast
