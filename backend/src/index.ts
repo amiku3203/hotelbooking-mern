@@ -13,6 +13,15 @@ import mongoose from 'mongoose'
 import cookieParser from "cookie-parser"
 import path from 'path';
 
+import {v2 as cloudinary} from "cloudinary"
+
+import myHotelRoutes from "./routes/my-hotels"
+
+cloudinary.config({
+    cloud_name:process.env.CLOUDINARY_CLOUD_NAME,
+    api_key:process.env.CLOUDINARY_API_KEY,
+    api_secret:process.env.CLOUDINARY_API_SECRET
+})
 // it will try to connect if it successfuly connection no eror comes otherwise it will throw ans error and our server will crashed
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string)
 
@@ -37,7 +46,12 @@ app.use(express.static(path.join(__dirname,"../../frontend/dist")))
 // its prefix our request 
  app.use("/api/auth", authRoute)
  app.use("/api/users",userRoute )
+ app.use("/api/my-hotels",myHotelRoutes )
  // for checking api we always use postman but here a alternative in vs code is thuunder client which is super easy to use 
+
+ app.get("*",(req:Request , res:Response)=>{
+       res.sendFile(path.join(__dirname,'../../frontend/dist/index.html'))
+ })
 
 app.listen(7000, ()=>{
      console.log("listening on 7000");

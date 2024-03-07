@@ -11,32 +11,44 @@ export const register= async ( formData:RegisterFormData)=>{
     },
     body:JSON.stringify( formData ),
   })
+  const responseBody = await response.json();
+  console.log(responseBody);
   if (!response.ok) {
     // Check if the response has a JSON content type
     
-      const responseBody = await response.json();
+      
       throw new Error(responseBody.message || 'Failed to register user');
    
-    }
+    } 
+    return responseBody;
   }
  
-export const signIn =async (formData:SignInFormData)=>{
-    const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
-          method: 'POST',
-          credentials: "include",
-          headers: {
-          "Content-type": "application/json"
-,
-          },
-          body:JSON.stringify(formData)
-    })
+  export const signIn = async (formData: SignInFormData) => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      const body = await response.json();
+  
+      if (!response.ok) {
+        throw new Error(body.message);
+      }
+      console.log(body) ;
+      return body;
 
-    const body= await response.json();
-    if(!response.ok){
-       throw new Error(body.message);
+      
+    } catch (error) {
+      console.error('Error during sign in:', error);
+      throw error; // Rethrow the error to propagate it to the calling code
     }
-    return body;
-}
+  };
+  
 
 
 
@@ -53,10 +65,23 @@ export const validateToken= async ()=>{
 
  export const signOut= async()=>{
   const response= await fetch(`${API_BASE_URL}/api/auth/logout`, {
-    credentials:"include",
     method: "POST",
+    credentials:"include",
+  
    })
     if(!response.ok) throw new Error("Error during sign out");
 
      
+ }
+
+
+ export const addMyHotel = async(hotelFormData:FormData)=>{
+  const response= await fetch(`${API_BASE_URL}/api/my-hotels  `, {
+    credentials:"include",
+    method: "POST",
+    body:hotelFormData,
+   })
+    if(!response.ok) throw new Error("Failed to add hotel");
+      
+    return response.json();
  }

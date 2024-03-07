@@ -19,11 +19,12 @@ const SignIn = () => {
     //show the toast
      showToast({message:"Sign Successful" , type:"SUCCESS"})
     // navigate to the home page 
-    await queryClient.invalidateQueries("validateToken")
+    await queryClient.invalidateQueries("validateToken");
      navigate("/");
    },
    onError: async(error:Error)=>{
       //show the toast
+      console.log(error)
       showToast({message:error.message, type:"ERROR"})
    }
  });

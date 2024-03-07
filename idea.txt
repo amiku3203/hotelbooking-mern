@@ -7,3 +7,10 @@
 8- create registration form 
 9-calling api for register
 10-creating context and Toast
+11-creating login form 
+12-signout api 
+13- deploy auth api to render both frontend and backend 
+14- setup cloundinary 
+15-create hotel feture api
+15-setup multer 
+16-create hotel form 
