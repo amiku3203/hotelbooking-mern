@@ -1,3 +1,5 @@
+import mongoose from 'mongoose';
+
 export type HotelType ={
      _id:string;
      userId:string;
@@ -16,7 +18,6 @@ export type HotelType ={
 }
 
 
-import mongoose from 'mongoose';
 
 const hotelSchema = new mongoose.Schema<HotelType>({
     _id:{type:String},
