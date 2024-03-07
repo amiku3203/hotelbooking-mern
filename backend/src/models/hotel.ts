@@ -19,7 +19,7 @@ export type HotelType ={
 import mongoose from 'mongoose';
 
 const hotelSchema = new mongoose.Schema<HotelType>({
-   
+    _id:{type:String},
     userId: { type: String, required: true },
     name: { type: String, required: true },
     city: { type: String, required: true },
