@@ -51,7 +51,7 @@ export const validateToken = async () => {
     method: "GET",
   });
   if (!response.ok) throw new Error("token invalid");
-
+ console.log(response);
   return response.json();
 };
 
