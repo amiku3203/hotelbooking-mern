@@ -36,7 +36,7 @@ app.use(express.urlencoded({extended:true}));
 
 
 app.use(cors({
-    origin:"*",
+    origin: "*",
     credentials :true
 
 } ));
@@ -57,5 +57,5 @@ app.use(express.static(path.join(__dirname,"../../frontend/dist")))
  })
 
 app.listen(7000, ()=>{
-     console.log("listening on 10000");
+     console.log("listening on 7000");
 })
