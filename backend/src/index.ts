@@ -56,6 +56,6 @@ app.use(express.static(path.join(__dirname,"../../frontend/dist")))
        res.sendFile(path.join(__dirname,'../../frontend/dist/index.html'))
  })
 
-app.listen(7000, ()=>{
-     console.log("listening on 7000");
+app.listen(10000, ()=>{
+     console.log("listening on 10000");
 })
