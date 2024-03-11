@@ -25,7 +25,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: 'https://hotelbooking-mern-q9i7.onrender.com',
+    origin: 'https://travelstayweb.vercel.app',
     credentials: true,
   })
 );
