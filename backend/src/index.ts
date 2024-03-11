@@ -25,7 +25,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: 'https://travelstayweb.vercel.app',
+    origin:process.env.FRONTEND_URL,
     credentials: true,
   })
 );
