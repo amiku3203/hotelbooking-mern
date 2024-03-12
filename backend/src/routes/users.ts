@@ -6,7 +6,7 @@ import verifyToken from "../middleware/auth";
 
 const router = express.Router();
 
-router.get("/me", async (req: Request, res: Response) => {
+router.get("/me", verifyToken, async (req: Request, res: Response) => {
   const userId = req.userId;
 
   try {
@@ -59,7 +59,7 @@ router.post(
 
       res.cookie("auth_token", token, {
         httpOnly: true,
-       
+        secure: process.env.NODE_ENV === "production",
         maxAge: 86400000,
       });
       return res.status(200).send({ message: "User registered OK" });
