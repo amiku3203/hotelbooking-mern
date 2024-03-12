@@ -55,7 +55,7 @@ router.post(
   }
 );
 
-router.get("/validate-token",  (req: Request, res: Response) => {
+router.get("/validate-token", verifyToken, (req: Request, res: Response) => {
   res.status(200).send({ userId: req.userId });
 });
 
