@@ -25,7 +25,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin:"https://bestplacetostay.onrender.com/",
+    origin:"https://bestplacetostay.onrender.com",
     credentials: true,
   })
 );
