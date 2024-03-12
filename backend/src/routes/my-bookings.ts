@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+ import express, { Request, Response } from "express";
 import verifyToken from "../middleware/auth";
 import Hotel from "../models/hotel";
 import { HotelType } from "../shared/types";
@@ -6,7 +6,7 @@ import { HotelType } from "../shared/types";
 const router = express.Router();
 
 // /api/my-bookings
-router.get("/", async (req: Request, res: Response) => {
+router.get("/", verifyToken, async (req: Request, res: Response) => {
   try {
     const hotels = await Hotel.find({
       bookings: { $elemMatch: { userId: req.userId } },
