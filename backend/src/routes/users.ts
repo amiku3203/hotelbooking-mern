@@ -58,7 +58,7 @@ router.post(
       );
 
       
-      return res.status(200).send({ message: "User registered OK" },token);
+      return res.status(200).json({ message: "User registered OK", token });
     } catch (error) {
       console.log(error);
       res.status(500).send({ message: "Something went wrong" });
