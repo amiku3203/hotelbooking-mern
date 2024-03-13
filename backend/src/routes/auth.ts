@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken";
 import verifyToken from "../middleware/auth";
 
 const router = express.Router();
-
+const invalidatedTokens = new Set();
 router.post(
   "/login",
   [
@@ -60,10 +60,12 @@ router.get("/validate-token", verifyToken, (req: Request, res: Response) => {
 });
 
 router.post("/logout", (req: Request, res: Response) => {
-  res.cookie("auth_token", "", {
-    expires: new Date(0),
-  });
-  res.send();
+  const token = req.headers['authorization'];
+  if (!token) {
+    return res.status(403).json({ error: 'Token is not provided' });
+  }
+  invalidatedTokens.add(token); // Add token to invalidated set
+  res.json({ message: 'Logout successful' });
 });
 
 export default router;
