@@ -30,7 +30,7 @@ export const register = async (formData: RegisterFormData) => {
   });
 
   const responseBody = await response.json();
-
+ localStorage.setItem("token",responseBody.token);
   if (!response.ok) {
     throw new Error(responseBody.message);
   }
@@ -42,6 +42,7 @@ export const signIn = async (formData: SignInFormData) => {
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
+      'Authorization': `Bearer ${localStorage.getItem("token)}`,
     },
     body: JSON.stringify(formData),
   });
