@@ -36,13 +36,13 @@ export const register = async (formData: RegisterFormData) => {
   }
 };
 
-export const signIn = async (formData: SignInFormData) => {
+ export const signIn = async (formData: SignInFormData) => {
   const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
     method: "POST",
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
-      'Authorization': `Bearer ${localStorage.getItem("token)}`,
+      'Authorization': `Bearer ${localStorage.getItem("token")}`, // Corrected closing parenthesis
     },
     body: JSON.stringify(formData),
   });
@@ -55,6 +55,7 @@ export const signIn = async (formData: SignInFormData) => {
   
   return body;
 };
+
 
 export const validateToken = async () => {
   const response = await fetch(`${API_BASE_URL}/api/auth/validate-token`, {
