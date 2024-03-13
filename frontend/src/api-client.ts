@@ -42,7 +42,7 @@ export const register = async (formData: RegisterFormData) => {
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
-      'Authorization': `Bearer ${localStorage.getItem("token")}`, // Corrected closing parenthesis
+      'Authorization': localStorage.getItem("token")
     },
     body: JSON.stringify(formData),
   });
